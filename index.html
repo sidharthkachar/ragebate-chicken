@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ragebate you silly chicken</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; display: grid;
+  place-items: center; padding: 20px;
+  font-family: Arial, sans-serif; color: white;
+  background: linear-gradient(135deg,#160b2e,#6327a8,#ff477e);
+}
+.card {
+  width: 100%; max-width: 430px; padding: 30px 20px;
+  border: 1px solid #ffffff40; border-radius: 25px;
+  background: #180d2be8; text-align: center;
+  box-shadow: 0 20px 60px #0006;
+}
+h1 { font-size: 27px; color: #ffcf5c; }
+.monkey { font-size: 75px; margin: 18px; }
+h2 { font-size: 25px; }
+#stage {
+  height: 150px; position: relative;
+  margin-top: 25px; border-radius: 16px;
+  background: #ffffff0c; overflow: hidden;
+}
+button {
+  border: 0; border-radius: 12px; padding: 13px 24px;
+  font-size: 17px; font-weight: bold; cursor: pointer;
+}
+#yes { background: #8dff9c; color: #14251a; }
+#no { background: #ff6384; color: #35101a; }
+#no { position: absolute; left: 55%; top: 30px; }
+#yes { position: absolute; left: 8%; top: 30px; }
+#message { min-height: 58px; margin-top: 20px; font-size: 17px; }
+small { color: #d5c8ed; }
+</style>
+</head>
+<body>
+<main class="card">
+  <h1>Ragebate you silly chicken 🐔</h1>
+  <div class="monkey">🐒</div>
+  <h2>Are you monkey?</h2>
+  <p>Choose wisely. There are consequences. 😂</p>
+
+  <div id="stage">
+    <button id="yes">YES 😂</button>
+    <button id="no">NO 😤</button>
+  </div>
+
+  <div id="message" aria-live="polite">
+    Your answer will decide your fate...
+  </div>
+  <small>100% silly • 0% serious</small>
+</main>
+
+<script>
+const stage = document.getElementById("stage");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const message = document.getElementById("message");
+
+const noMessages = [
+  "Nice try! The NO button has escaped. 🏃",
+  "Bro is fighting a button and losing. 💀",
+  "Denial level: professional chicken. 🐔",
+  "The button said: absolutely not. 😂"
+];
+
+const yesMessages = [
+  "CONFIRMED! Monkey mode activated. 🐒",
+  "You admitted it! Screenshot this moment. 😂",
+  "The council of monkeys welcomes you. 🍌",
+  "YES? Your banana privileges are approved. 🍌"
+];
+
+let noCount = 0;
+let yesCount = 0;
+
+no.addEventListener("click", () => {
+  noCount++;
+  const maxX = Math.max(0, stage.clientWidth - no.offsetWidth);
+  const maxY = Math.max(0, stage.clientHeight - no.offsetHeight);
+  no.style.left = Math.random() * maxX + "px";
+  no.style.top = Math.random() * maxY + "px";
+  message.textContent =
+    noMessages[(noCount - 1) % noMessages.length];
+});
+
+yes.addEventListener("click", () => {
+  yesCount++;
+  message.textContent =
+    yesMessages[(yesCount - 1) % yesMessages.length];
+});
+</script>
+</body>
+</html>
